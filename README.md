@@ -4,7 +4,7 @@ Converts exodus' SAFE report to CSV transaction history that other tools can con
 
 ## Install
 
-`yarn add --global exodus-safe-to-csv`
+`npm install -g exodus-safe-to-csv`
 
 ## Usage
 

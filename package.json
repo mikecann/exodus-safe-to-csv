@@ -1,12 +1,12 @@
 {
   "name": "exodus-safe-to-csv",
-  "version": "0.1.1",
+  "version": "0.1.2",
   "description": "Converts exodus' SAFE report to CSV transaction history that other tools can consume",
   "main": "index.ts",
   "scripts": {
     "test": "ts-node index.ts -s exodus-report-SAFE-2018-04-22_08-16-01.zip -d out",
     "build": "tsc",
-    "postinstall": "yarn build"
+    "prepare": "npm run build"
   },
   "bin": {
     "exodus-safe-to-csv": "bin/index.js"
@@ -14,7 +14,6 @@
   "author": "Mike Cann (https://mikecann.co.uk)",
   "license": "MIT",
   "dependencies": {
-    "@types/commander": "^2.12.2",
     "@types/json2csv": "^4.1.0",
     "@types/jszip": "^3.1.3",
     "@types/node": "^9.6.6",
