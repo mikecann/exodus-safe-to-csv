@@ -6,7 +6,6 @@
   "scripts": {
     "test": "ts-node index.ts -s exodus-report-SAFE-2018-04-22_08-16-01.zip -d out",
     "build": "tsc",
-    "prepublish": "yarn build",
     "postinstall": "yarn build"
   },
   "bin": {
