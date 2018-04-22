@@ -1,6 +1,6 @@
 {
   "name": "exodus-safe-to-csv",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "description": "Converts exodus' SAFE report to CSV transaction history that other tools can consume",
   "main": "index.ts",
   "scripts": {
