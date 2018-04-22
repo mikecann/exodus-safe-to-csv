@@ -1,3 +1,5 @@
+#! /usr/bin/env node
+
 import * as program from "commander";
 import * as shell from "shelljs";
 import * as JSZip from "jszip";
@@ -53,8 +55,9 @@ async function parseZip(zip: JSZip) {
         const parser = new Parser();
         const csv = parser.parse(rows);
         const fname = `${safeTransactions[0].coinName}.csv`;
+        const fout = `${program.destination}/${fname}`;
 
-        fs.writeFileSync(`${program.destination}/${fname}`, csv);
-        console.log(csv);
+        fs.writeFileSync(fout, csv);
+        console.log(`Exported ${safeTransactions.length} SAFE transactions to ${fout}`);
     }
 }
