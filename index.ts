@@ -8,7 +8,7 @@ import { SAFECoinTransactions, TransactionCSVRow } from './types';
 import { Parser } from "json2csv";
 import * as moment from "moment";
 
-// Define the options for the CPI
+// Define the options for the CLI
 program
     .version("0.0.1")
     .description("Converts exodus' SAFE report to CSV transaction history that other tools can consume")
@@ -30,10 +30,13 @@ shell.mkdir(program.destination);
 
 // Parse the Zip contents
 async function parseZip(zip: JSZip) {
+    
+    // Make sure the user supplied the right kind of Zip
     const transactions = zip.folder("v1/txs");
     if (!transactions)
         throw new Error("Zip should contain the folder `v1/txs");
 
+    // Iterate over each coin and export its transactions as CSV
     for(var key in transactions.files)
     {
         if (!key.includes("v1\\txs"))
