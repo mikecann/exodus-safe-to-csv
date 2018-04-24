@@ -44,16 +44,21 @@ async function parseZip(zip: JSZip) {
 
         const contents = await transactions.files[key].async("text");
         const safeTransactions: SAFECoinTransactions = JSON.parse(contents);
-        const rows: TransactionCSVRow[] = safeTransactions.map(tx => ({
-            TXID: tx.txId,
-            TXURL: `https://live.blockcypher.com/btc/tx/${tx.txId}`,
-            DATE: moment(tx.date).format(),
-            COINAMOUNT: tx.coinAmount,
-            FEE: tx.feeAmount,
-            BALANCE: "0",
-            EXCHANGE: "",
-            MEMO: ""
-        }))
+        const rows: TransactionCSVRow[] = safeTransactions
+            .map(tx => ({
+                TXID: tx.txId,
+                TXURL: `https://live.blockcypher.com/btc/tx/${tx.txId}`,
+                DATE: moment(tx.date).format(),
+                COINAMOUNT: tx.coinAmount,
+
+                // Dont include the fee for transactions with addresses
+                // I suspect that are to do with multi-part exchanges that Exodus performs internally
+                FEE: tx.addresses ? "" : tx.feeAmount,
+
+                BALANCE: "0",
+                EXCHANGE: "",
+                MEMO: ""
+            }))
 
         const parser = new Parser();
         const csv = parser.parse(rows);

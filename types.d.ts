@@ -7,7 +7,8 @@ export type SAFECoinTransaction = {
   date: string,
   coinAmount: string,
   feeAmount: string,
-  coinName: string
+  coinName: string,
+  addresses?: any[]
 }
 
 export type TransactionCSVRow = {
